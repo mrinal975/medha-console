@@ -1,5 +1,4 @@
 <script setup>
-import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
 import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
 import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
@@ -16,6 +15,50 @@ const vuetifyTheme = useTheme()
 const upgradeBanner = computed(() => {
   return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
 })
+
+const items = [
+  {
+    title: "Dashboard",
+    icon: "mdi-home-outline",
+    to: "/dashboard",
+  },
+  {
+    title: 'Login',
+    icon: 'mdi-login',
+    to: '/login',
+  },
+  {
+    title: 'Register',
+    icon: 'mdi-account-plus-outline',
+    to: '/register',
+  },
+  {
+    title: 'Error',
+    icon: 'mdi-information-outline',
+    to: '/no-existence',
+  },
+  {
+    title: 'Typography',
+    icon: 'mdi-alpha-t-box-outline',
+    to: '/typography',
+  },
+  {
+    title: 'Cards',
+    icon: 'mdi-credit-card-outline',
+    to: '/cards',
+  },
+  {
+    title: 'Tables',
+    icon: 'mdi-table',
+    to: '/tables',
+  },
+  {
+    title: 'Form Layouts',
+    icon: 'mdi-form-select',
+    to: '/form-layouts',
+  },
+  
+]
 </script>
 
 <template>
@@ -69,90 +112,15 @@ const upgradeBanner = computed(() => {
     </template>
 
     <template #vertical-nav-content>
-      <VerticalNavLink
-        :item="{
-          title: 'Dashboard',
-          icon: 'mdi-home-outline',
-          to: '/dashboard',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Account Settings',
-          icon: 'mdi-account-cog-outline',
-          to: '/account-settings',
-        }"
-      />
-
-      <!-- 👉 Pages -->
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'Pages',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Login',
-          icon: 'mdi-login',
-          to: '/login',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Register',
-          icon: 'mdi-account-plus-outline',
-          to: '/register',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Error',
-          icon: 'mdi-information-outline',
-          to: '/no-existence',
-        }"
-      />
-
-      <!-- 👉 User Interface -->
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'User Interface',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Typography',
-          icon: 'mdi-alpha-t-box-outline',
-          to: '/typography',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Icons',
-          icon: 'mdi-eye-outline',
-          to: '/icons',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Cards',
-          icon: 'mdi-credit-card-outline',
-          to: '/cards',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Tables',
-          icon: 'mdi-table',
-          to: '/tables',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Form Layouts',
-          icon: 'mdi-form-select',
-          to: '/form-layouts',
-        }"
-      />
+      <span
+        v-for="(item, index) in items"
+        :key="index"
+      >
+        <VerticalNavLink
+          v-bind="key"
+          :item="item"
+        />
+      </span>
     </template>
     <!-- 👉 Pages -->
     <slot />
